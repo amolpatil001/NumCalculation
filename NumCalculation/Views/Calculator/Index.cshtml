@@ -1,0 +1,59 @@
+﻿@model NumCalculation.Models.ModelAddition
+@using System.Web.Mvc.Html
+
+
+<h2>Index</h2>
+<html>
+<head>
+    <title>
+        Calculator
+    </title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/scripts/jquery-1.10.2.js"></script>
+
+       <script type="text/javascript">
+            $(document).ready(function(){                      
+             function functionx(evt)
+             {
+                if (evt.charCode > 31 && (evt.charCode < 48 || evt.charCode > 57))
+                      {
+                        alert("Allow Only Numbers");
+                        return false;
+                      }
+             }
+            });        
+        </script>
+</head>
+<body>
+    @using (Html.BeginForm("Result", "Calculator",FormMethod.Post))
+    {
+        <div >
+            <table>
+               <tr>
+                    <td> First Value</td>
+                    <td>
+                        @Html.TextBoxFor(m=>m.firstValue, new { type = "number", required = "required", pattern = @"[0-9]{10}" })
+                    </td>
+                </tr>
+                <tr>
+                    <td> Second Value</td>
+                    <td>
+                        @Html.TextBoxFor(m=>m.secondValue, new { type = "number", required = "required", pattern = @"[0-9]{10}" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button id="submit" type="submit" value="Add"> Add</button>
+                    </td>
+                </tr>     
+                <tr>
+                    <td></td>
+                    <td>                       
+                        @ViewBag.result                        
+                    </td>
+               </tr>            
+      </table>
+       </div>
+    }
+</body>
+</html>
